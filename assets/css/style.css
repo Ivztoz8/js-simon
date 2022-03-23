@@ -1,0 +1,16 @@
+/* Font importati */
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Palette+Mosaic&display=swap');
+
+
+h1{
+    font-family: 'Comfortaa', cursive;
+    font-family: 'Palette Mosaic', cursive;
+}
+
+.headerBackground{
+    background-color: greenyellow;
+}
+
+.headerBackground1{
+    background-color: lightgreen;
+}
