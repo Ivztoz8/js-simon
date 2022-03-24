@@ -3,56 +3,58 @@ let btnPlay = document.getElementById("btnPlay");
 let secNumRan = document.getElementById("secNumRan");
 let nums = document.getElementById("nums");
 let numRan = 0;
-let numRanArray = [];
+var numRanArray = [];
+var userNumArray = []; 
+var chkArray = [];
+var numIndo = 0; 
 
 // Funzioni
-function simonFunction(){
+function gen5RandNum(){
     secNumRan.classList.remove("d-none");
     for (i=0; i < 5; i++){
-        numRan = Math.floor(Math.random()*99) + 1;
+        numRan = Math.floor(Math.random()*100);
         numRanArray.push(numRan);
         nums.innerHTML += `<div class="col text-white text-center fs-5">${(numRan)}</div>`;
     }  
-    return(numRanArray);
+    return numRanArray;
 }
 
-function simonFunction2 (){
+function hideNums (){
     secNumRan.classList.add("d-none");
 }
 
-function simonFunction3 (){
+function inputUserNums (){
     for (i = 0; i < 5; i++){
-    var userNumArray = [];
-    var userNum = parseInt(prompt(`Inserisci il ${(i)} numero:`));
-    userNumArray.push(userNum);    
+        let userNum = parseInt(prompt(`Inserisci in sequenza i 5 numeri che hai visto:`));
+        userNumArray.push(userNum);    
     }
-    for (i2 = 0; i2 < 5; i2++){
-        if (userNumArray[i2] === numRanArray[i2]){
-            console.log(userNumArray[i2], numRanArray[i2])
-            var chkArray = [];
-            chkArray.push(numRanArray[i2]);
-            numIndo = 0;
+    return userNumArray;
+}
+
+function checkArrays(){
+    for (j = 0; j < 5; j++){
+        if (numRanArray.includes(userNumArray[j])){
+            chkArray.push(numRanArray[j]);
             numIndo++; 
-        }else {
-            numIndo = 0;
         }
     }
-   if (numIndo === 5){
-    alert(`Hai indovinato tutti i numeri: ${(chkArray)}`);
-   }
-   else {
-    alert(`Hai indovinato ${(numIndo)} numeri: ${(chkArray)}`);
-   }
+    return numIndo;
+}
+function checknumIndo () {
+    if (numIndo === 5){
+        alert(`Hai indovinato tutti i numeri: ${(chkArray)}`);
+       }
+       else {
+        alert(`Hai indovinato ${(numIndo)} numeri: ${(chkArray)}`);
+       }    
 }
 
 // Eventi
 btnPlay.addEventListener("click",
-simonFunction, 
-setTimeout(simonFunction2, 10000),
-setTimeout(simonFunction3, 10050))    
-
-
-// console.log(numRanArray); 
-
-
+gen5RandNum, 
+setTimeout(hideNums, 10000),
+setTimeout(inputUserNums, 10000),
+setTimeout(checkArrays, 11000),
+setTimeout(checknumIndo, 11050),
+)    
 
